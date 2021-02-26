@@ -1,26 +1,75 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Vue.js Markdown Notes!</h1>
+    <button id="btn" @click="createNote">Add New Note</button>
+    
+    <ul id="listNotes">
+      <li v-for="note in notes" :key="note.id"><Notas :note="note"/></li>
+    </ul>
+    
   </div>
 </template>
 
 <script>
-
+import Notas from './components/Notas';
 export default {
   name: 'App',
+  data(){
+    return{
+      notes: [
+        {
+          date: "Thu Feb 25 2021 at 19:40:10",
+          message: "# Hello World!"
+        }
+      ]
+    }
+  },
   components: {
-    
+    Notas,
+  },
+  methods: {
+    createNote: function(){
+      let today = new Date();
+      let dateCreated = today.toDateString() + ' at '+ today.toLocaleTimeString();
+      let convert = String(dateCreated);
+      this.notes.push({date: convert});
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+  *{padding: 0; margin: 0;}
+  body{background: #141a20;}
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #fff;
+    padding: 30px 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  ul {list-style: none; display: flex; flex-flow: column-reverse;}
+  li {margin: 15px 0 20px 0;}
+
+  #btn {
+    border: 1px solid #111;
+    width: 150px;
+    height: 40px;
+    font-size: 11pt;
+    color: #fff;
+    cursor: pointer;
+    margin: 35px 0;
+    background: #333;
+    outline: none;
+  }
+  #btn:hover {
+    background: #222;
+    color: #ddd;
+  }
 </style>
