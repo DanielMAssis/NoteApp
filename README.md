@@ -10,7 +10,7 @@ Create and store notes of your ideas.
 
 # User Stories
 
-- [ ] User can create a note
+- [x] User can create a note
 - [ ] User can edit a note
 - [ ] User can delete a note
 - [ ] When closing the browser window the notes will be stored and when the User returns, the data will be retrieved
