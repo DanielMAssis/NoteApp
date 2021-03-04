@@ -3,8 +3,8 @@
         <span >Note Created in {{ note.date }}</span>
         <i class="far fa-save" title="Save"></i>
         <i class="far fa-edit" title="Edit"></i>
-        <i class="far fa-trash-alt" title="Delete"></i>
-        <textarea id="" spellcheck="false" placeholder="Type your note here!" v-model="note.message"></textarea>
+        <i class="far fa-trash-alt" title="Delete" @click="emitDelete"></i>
+        <textarea spellcheck="false" placeholder="Type your note here!" v-model="note.message"></textarea>
     </div>
 </template>
 
@@ -17,7 +17,12 @@ export default {
     },
     props: {
         note: Object
-    } 
+    },
+    methods: {
+        emitDelete: function() {
+           this.$emit("deleteMe", {idNote: this.note.date, component: this});
+        }
+    }
 }
 </script>
 

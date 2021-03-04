@@ -4,9 +4,8 @@
     <button id="btn" @click="createNote">Add New Note</button>
     
     <ul id="listNotes">
-      <li v-for="note in notes" :key="note.id"><Notas :note="note"/></li>
+      <li v-for="note in notes" :key="note.date"><Notas :note="note" @deleteMe="deleteNote($event)"/></li>
     </ul>
-    
   </div>
 </template>
 
@@ -29,10 +28,15 @@ export default {
   },
   methods: {
     createNote: function(){
-      let today = new Date();
-      let dateCreated = today.toDateString() + ' at '+ today.toLocaleTimeString();
+      let day = new Date();
+      let dateCreated = day.toDateString() + ' at '+ day.toLocaleTimeString();
       let convert = String(dateCreated);
       this.notes.push({date: convert});
+    },
+    deleteNote: function($event) {
+      let id = $event.idNote;
+      let newNotes = this.notes.filter(notes => notes.date != id);
+      this.notes = newNotes;
     }
   }
 }
