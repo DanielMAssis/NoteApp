@@ -18,4 +18,4 @@ Create and store notes of your ideas.
 # Bonus features
 
 - [ ] User can create and edit a note in Markdown format. On save it will convert Markdown to HTML
-- [ ] User can see the date when he created the note
+- [x] User can see the date when he created the note
