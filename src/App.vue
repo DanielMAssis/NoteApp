@@ -26,17 +26,32 @@ export default {
   components: {
     Notas,
   },
+  mounted(){
+    if(localStorage.getItem('notes')){
+      try {
+        this.notes = JSON.parse(localStorage.getItem('notes'));
+      } catch(e) {
+        localStorage.removeItem('notes');
+      }
+    }
+  },
   methods: {
+    saveNotes: function(){
+      const parsed = JSON.stringify(this.notes);
+      localStorage.setItem('notes', parsed);
+    },
     createNote: function(){
       let day = new Date();
       let dateCreated = day.toDateString() + ' at '+ day.toLocaleTimeString();
       let convert = String(dateCreated);
       this.notes.push({date: convert});
+      this.saveNotes();
     },
     deleteNote: function($event) {
       let id = $event.idNote;
       let newNotes = this.notes.filter(notes => notes.date != id);
       this.notes = newNotes;
+      this.saveNotes();
     }
   }
 }
