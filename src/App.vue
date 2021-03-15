@@ -4,7 +4,7 @@
     <button id="btn" @click="createNote">Add New Note</button>
     
     <ul id="listNotes">
-      <li v-for="note in notes" :key="note.date"><Notas :note="note" @deleteMe="deleteNote($event)"/></li>
+      <li v-for="note in notes" :key="note.date"><Notas :note="note" @saveMe="saveNotes" @deleteMe="deleteNote($event)"/></li>
     </ul>
   </div>
 </template>

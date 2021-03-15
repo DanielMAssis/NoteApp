@@ -1,8 +1,7 @@
 <template>
     <div class="notas">
         <span >Note Created in {{ note.date }}</span>
-        <i class="far fa-save" title="Save"></i>
-        <i class="far fa-edit" title="Edit"></i>
+        <i class="far fa-save" title="Save" @click="emitSave"></i>
         <i class="far fa-trash-alt" title="Delete" @click="emitDelete"></i>
         <textarea spellcheck="false" placeholder="Type your note here!" v-model="note.message"></textarea>
     </div>
@@ -19,6 +18,9 @@ export default {
         note: Object
     },
     methods: {
+        emitSave: function() {
+           this.$emit("saveMe");
+        },
         emitDelete: function() {
            this.$emit("deleteMe", {idNote: this.note.date, component: this});
         }
