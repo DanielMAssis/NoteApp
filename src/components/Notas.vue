@@ -20,6 +20,7 @@ export default {
     methods: {
         emitSave: function() {
            this.$emit("saveMe");
+           alert("Saved ✔");
         },
         emitDelete: function() {
            this.$emit("deleteMe", {idNote: this.note.date, component: this});
